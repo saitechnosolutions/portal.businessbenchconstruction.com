@@ -1,0 +1,35 @@
+stageid,stagename,description
+ESTSTG01,Upto Basement LVl,Earthwork excavation 
+ESTSTG01,Upto Basement LVl,PCC for foundation  base concrete.
+ESTSTG01,Upto Basement LVl,PCC for flooring
+ESTSTG01,Upto Basement LVl,Backfilling soil 
+ESTSTG01,Upto Basement LVl,A)Excavated earth including consolidating the same.
+ESTSTG01,Upto Basement LVl,B)well gravel brought from outside and consolidating the same.
+ESTSTG01,Upto Basement LVl,"RCC (Including Steel & Shuttering) - Footing ,Column Upto FFL,Plinth Beam & Tie Beam"
+ESTSTG01,Upto Basement LVl,RR masonry 
+ESTSTG01,Upto Basement LVl,Brickwork work -Upto Basement
+ESTSTG01,Upto Basement LVl,Plastering of inside walls - GL  to Basement
+ESTSTG01,Upto Basement LVl,Anti termite treatment
+ESTSTG02,FFL to Lintel Top,"RCC (Including Steel & Shuttering) - Column FFL  Upto Lintel Lvl, Lintel & Sunshade"
+ESTSTG02,FFL to Lintel Top,Brickwork - FFL' to Lintel Lvl
+ESTSTG03,Lintel To Parapet Top,"RCC   (Including Steel & Shuttering) -Column-Lintel Lvl to Parapet Top,Roof Beam & Roof Slab"
+ESTSTG03,Lintel To Parapet Top,Brickwork - Lintel Lvl - Parapet Top 
+ESTSTG03,Lintel To Parapet Top,Weathering course 
+ESTSTG03,Lintel To Parapet Top,Over Head Water Tank
+ESTSTG04,Finishes - Plastering,Plastering inside walls (FFL-Roof Slab) & Ceiling
+ESTSTG04,Finishes - Plastering,Plastering  outside walls (FFL-Parapet Top)
+ESTSTG05,Finishes -Tile,"Tile (Flooring ,Wall Cladding & Parking & Weathering Tile)"
+ESTSTG05,Finishes -Tile,"Granite -Stairs ,Foyer Area & Kitchen Counter Top"
+ESTSTG06,Finishes- Wooden Works,Supply and fixing of Main Wooden Door 
+ESTSTG06,Finishes- Wooden Works,Supply and fixing of other Wooden Door 
+ESTSTG06,Finishes- Wooden Works,Supplying and fixing of UPVC Doors including Grills
+ESTSTG06,Finishes- Wooden Works,Supplying and fixing of  windows  and Ventilator including Grills
+ESTSTG07,Finishes -Painting, Interior Wall Painting 
+ESTSTG07,Finishes -Painting,Exterior Wall Painting 
+ESTSTG07,Finishes -Painting,Wooden  Painting /Polishing works for Dooors & Windows Frame
+ESTSTG08,Finishes - Electrical & Plumbing,Electrical  works  Including  Fixing of Fittings
+ESTSTG08,Finishes - Electrical & Plumbing,Plumbing works  & fixing  Including Sanitaty Fitings
+ESTSTG09,Finishes- Other Works,Sump 
+ESTSTG09,Finishes- Other Works,Compund Wall
+ESTSTG09,Finishes- Other Works,Over Head RCC Tank
+ESTSTG09,Finishes- Other Works,Septic Tank with Dispersion Trench
