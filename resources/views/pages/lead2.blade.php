@@ -68,7 +68,7 @@
                                                             </td>
                                                             <td><button class="btn btn-primary text-white assignedto" data-telecaller_assign_id="{{ $lead->telecaller_assign_id }}" data-leadid={{ $lead->leadid }}><i class="fa fa-users" aria-hidden="true"></i></button></td>
                                                             {{-- <td><button class="btn btn-info text-white leadview" data-leadid={{ $lead->leadid }} ><i class="fa fa-eye" aria-hidden="true"></i></button></td> --}}
-                                                            {{-- <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->id}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td> --}}
+                                                            {{-- <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->leadid}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td> --}}
 
                                                             <td><button class="btn btn-danger text-white leaddelete" data-leadid="{{ $lead->leadid }}" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                                         </tr>
@@ -120,7 +120,7 @@
                                                             </td>
                                                              <td><button class="btn btn-primary text-white assignedtoeng" data-engid="{{ $lead->ae_assign_id }}" data-leadid={{ $lead->leadid }}><i class="fa fa-users" aria-hidden="true"></i></button></td>
                                                             {{-- <td><button class="btn btn-info text-white leadview" data-leadid={{ $lead->leadid }} ><i class="fa fa-eye" aria-hidden="true"></i></button></td> --}}
-                                                            {{-- <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->id}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td> --}}
+                                                            {{-- <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->leadid}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td> --}}
 
                                                             {{-- <td><button class="btn btn-danger text-white" ><i class="fa fa-trash" aria-hidden="true"></i></button></td> --}}
                                                         </tr>
@@ -172,7 +172,7 @@
                                                                     <button class="btn btn-primary text-white addrequirement" data-bs-toggle="modal" data-bs-target="#createLead2" data-name="{{ $lead->user_name }}" data-email="{{ $lead->email }}" data-location="{{ $lead->location }}" data-mblnum="{{ $lead->phone_number }}" data-leadid="{{ $lead->leadid }}"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                                 @endif
 
-                                                                <button class="btn btn-primary text-white editlead" data-id="{{$lead->id}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                                <button class="btn btn-primary text-white editlead" data-id="{{$lead->leadid}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                                                 <button class="btn btn-info text-white leadview" data-leadid={{ $lead->leadid }} ><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                             </td>
                                                             <td>
@@ -384,7 +384,7 @@
                                     {{-- <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Lead ID</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="leadsid">
+                                            <select class="form-select" name="leadsid">
                                                 <option value="">-- Choose Lead --</option>
 
                                                 <option></option>
@@ -425,29 +425,32 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Google Map link</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%">
+                                            <input type="url" name="maplocation" id="maplocation" class="form-control" style="width:100%">
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Plot Area</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="plotarea" id="plotarea" class="form-control" style="width:100%">
+                                            <input type="number" name="plotarea" id="plotarea" class="form-control" style="width:100%">
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
+                                     @php
+                                                    $today = date("Y-m-d");
+                                             @endphp
                                     <h6 class="mt-3">Basic Information</h6>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Start Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="startdate" style="width: 100%" id="startdate">
-                                            <span class="error-text password_error"></span>
+                                            <input type="date" min="@php echo $today; @endphp" name="startdate" style="width: 100%" id="startdate">
+                                            <span class="error-text date_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">End Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="enddate" style="width: 100%" id="enddate">
+                                            <input type="date" name="enddate" style="width: 100%" id="enddate" min="@php echo $today; @endphp">
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
@@ -455,13 +458,13 @@
                                         <div class="form-input mt-3">
                                             <label for="">Budget Value</label><span class="text-danger">*</span><br>
                                             <input type="number" name="budgetvalue" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
+                                            <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Payment</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="payment">
+                                            <select class="form-select" name="payment">
                                                 <option value="Total Investment">Total Investment</option>
                                                 <option value="Loan">Loan</option>
                                             </select>
@@ -470,13 +473,18 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Clients Availability on the site</label><span class="text-danger">*</span><br>
-                                            <input type="number" name="availability" style="width: 100%" id="enddate">
+                                            <!--<input type="text" name="availability" style="width: 100%" id="enddate" required>-->
+                                            <select class="form-select" name="availability" required>
+                                                <option value="">-- Choose Option --</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
-                                            <label for="">Occupation</label><span class="text-danger">*</span><br>
+                                            <label for="">Occupation</label><br>
                                             <input type="text" name="occupation" style="width: 100%" id="enddate">
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
@@ -484,7 +492,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">What kind of style do you prefer</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="qnone">
+                                            <select class="form-select" name="qnone">
                                                 <option>-- Choose Option --</option>
                                                 <option>Option 1</option>
                                                 <option>Option 2</option>
@@ -606,7 +614,7 @@
                 <div class="form-input mt-3">
                     <input type="hidden" name="leadid" id="leadassign">
                     <label for="">Select Telecaller</label><span class="text-danger">*</span><br>
-                    <select class="form-control" name="telecaller" id="telecallerassign">
+                    <select class="form-select" name="telecaller" id="telecallerassign">
                         <option value="">-- Select Telecaller --</option>
                         @if($telecaller)
                             @foreach ($telecaller as $tele)
@@ -640,7 +648,7 @@
                 <div class="form-input mt-3">
                     <input type="hidden" name="leadid" id="leadassign1">
                     <label for="">Select AE</label><span class="text-danger">*</span><br>
-                    <select class="form-control" name="ae" id="assignaeid">
+                    <select class="form-select" name="ae" id="assignaeid">
                         <option value="">-- Select AE --</option>
                         @if($ae)
                             @foreach ($ae as $a)
@@ -685,7 +693,7 @@
                 </div>
                 <div class="form-input mt-3">
                     <label for="">Package Type</label><span class="text-danger">*</span><br>
-                    <select class="form-control" name="package" required>
+                    <select class="form-select" name="package" required>
                         <option value="">-- Choose Package Type --</option>
                         <!--<option value="Basic">Basic</option>-->
                         <!--<option value="Standard">Standard</option>-->
@@ -740,7 +748,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="leadid3" id="leadid3">
-                <select class="form-control" name="leadstatus" required>
+                <select class="form-select" name="leadstatus" required>
                     <option value="">-- Choose Lead Status --</option>
                     <option value="1">Converted</option>
                 </select>
@@ -754,230 +762,230 @@
         </div>
       </div>
 
-      <div class="modal fade" id="createLead3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Lead Creation</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{-- <h4 class="section-heading">Create User</h4> --}}
-                <form name="addLeadsdata" id="addLeadsdata1" action="javascript:;" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                    @csrf
+      <!--<div class="modal fade" id="createLead3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+      <!--  <div class="modal-dialog modal-lg">-->
+      <!--    <div class="modal-content">-->
+      <!--      <div class="modal-header">-->
+      <!--        <h5 class="modal-title" id="exampleModalLabel">Lead Creation</h5>-->
+      <!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+      <!--      </div>-->
+      <!--      <div class="modal-body">-->
+      <!--          {{-- <h4 class="section-heading">Create User</h4> --}}-->
+      <!--          <form name="addLeadsdata" id="addLeadsdata1" action="javascript:;" enctype="multipart/form-data" method="post" accept-charset="utf-8">-->
+      <!--              @csrf-->
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h6>Basic Information</h6>
-                                <div class="row">
-                                    {{-- <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Lead ID</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="leadsid">
-                                                <option value="">-- Choose Lead --</option>
+      <!--          <div class="container">-->
+      <!--              <div class="row">-->
+      <!--                  <div class="col-lg-12">-->
+      <!--                      <h6>Basic Information</h6>-->
+      <!--                          <div class="row">-->
+      <!--                              {{-- <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Lead ID</label><span class="text-danger">*</span><br>-->
+      <!--                                      <select class="form-control" name="leadsid">-->
+      <!--                                          <option value="">-- Choose Lead --</option>-->
 
-                                                <option></option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Name</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="name" style="width: 100%" id="name">
-                                            <span class="error-text name_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Mobile Number</label><span class="text-danger">*</span><br>
-                                            <input type="tel" name="phnumber" id="phnumber" class="form-control" style="width:100%">
-                                            <span class="error-text role_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">E-mail</label><span class="text-danger">*</span><br>
-                                            <input type="email" name="emailid" id="emailid" class="form-control" style="width:100%">
-                                            <span class="error-text role_error"></span>
-                                        </div>
-                                    </div>
+      <!--                                          <option></option>-->
+      <!--                                      </select>-->
+      <!--                                  </div>-->
+      <!--                              </div> --}}-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Name</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="name" style="width: 100%" id="name">-->
+      <!--                                      <span class="error-text name_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Mobile Number</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="tel" name="phnumber" id="phnumber" class="form-control" style="width:100%">-->
+      <!--                                      <span class="error-text role_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">E-mail</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="email" name="emailid" id="emailid" class="form-control" style="width:100%">-->
+      <!--                                      <span class="error-text role_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
 
-                                    <h6 class="mt-3">Site Information</h6>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">Address</label><span class="text-danger">*</span><br>
-                                            <textarea class="form-control" name="address" id="address"></textarea>
-                                            <span class="error-text email_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Google Map link</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%">
-                                            <span class="error-text role_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Plot Area</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="plotarea" id="plotarea" class="form-control" style="width:100%">
-                                            <span class="error-text role_error"></span>
-                                        </div>
-                                    </div>
-                                    <h6 class="mt-3">Basic Information</h6>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Start Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="startdate" style="width: 100%" id="startdate">
-                                            <span class="error-text password_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">End Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="enddate" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Budget Value</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="budgetvalue" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Payment</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="payment">
-                                                <option>-- Choose Payment --</option>
-                                                <option value="Total Investment">Total Investment</option>
-                                                <option value="Loan">Loan</option>
-                                            </select>
-                                            <span class="error-text name_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Clients Availability on the site</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="availability" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input mt-3">
-                                            <label for="">Occupation</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="occupation" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">What kind of style do you prefer</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="qnone">
-                                                <option>-- Choose Option --</option>
-                                                <option value="Apartments">Apartments</option>
-                                                <option value="Bungalows">Bungalows</option>
-                                                <option value="Villas">Villas</option>
-                                                <option value="Eco-friendly homes">Eco-friendly homes</option>
-                                                <option value="Farmhouses">Farmhouses</option>
-                                            </select>
+      <!--                              <h6 class="mt-3">Site Information</h6>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Address</label><span class="text-danger">*</span><br>-->
+      <!--                                      <textarea class="form-control" name="address" id="address"></textarea>-->
+      <!--                                      <span class="error-text email_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Google Map link</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%">-->
+      <!--                                      <span class="error-text role_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Plot Area</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="plotarea" id="plotarea" class="form-control" style="width:100%">-->
+      <!--                                      <span class="error-text role_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <h6 class="mt-3">Basic Information</h6>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Start Date</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="date" name="startdate" style="width: 100%" id="startdate">-->
+      <!--                                      <span class="error-text password_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">End Date</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="date" name="enddate" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text mobilenumber_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Budget Value</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="budgetvalue" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text mobilenumber_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Payment</label><span class="text-danger">*</span><br>-->
+      <!--                                      <select class="form-control" name="payment">-->
+      <!--                                          <option>-- Choose Payment --</option>-->
+      <!--                                          <option value="Total Investment">Total Investment</option>-->
+      <!--                                          <option value="Loan">Loan</option>-->
+      <!--                                      </select>-->
+      <!--                                      <span class="error-text name_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Clients Availability on the site</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="availability" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text mobilenumber_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-6">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Occupation</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="occupation" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text mobilenumber_error"></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">What kind of style do you prefer</label><span class="text-danger">*</span><br>-->
+      <!--                                      <select class="form-control" name="qnone">-->
+      <!--                                          <option>-- Choose Option --</option>-->
+      <!--                                          <option value="Apartments">Apartments</option>-->
+      <!--                                          <option value="Bungalows">Bungalows</option>-->
+      <!--                                          <option value="Villas">Villas</option>-->
+      <!--                                          <option value="Eco-friendly homes">Eco-friendly homes</option>-->
+      <!--                                          <option value="Farmhouses">Farmhouses</option>-->
+      <!--                                      </select>-->
 
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">How much time do you prefer to spend in the different areas of the house?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qntwo" style="width: 100%" id="enddate">
-                                            <span class="error-text "></span>
-                                        </div>
-                                    </div>
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">How much time do you prefer to spend in the different areas of the house?</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="qntwo" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text "></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
 
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">What kind of spaces are more important to you?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnthree" style="width: 100%" id="enddate">
-                                            <span class="error-text "></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">Is there anyone with mobility problem or disability?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfour" style="width: 100%" id="enddate">
-                                            <span class="error-text "></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">Your long term plan about the house</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfive" style="width: 100%" id="enddate">
-                                            <span class="error-text "></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input mt-3">
-                                            <label for="">How private the house should be?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnsix" style="width: 100%" id="enddate">
-                                            <span class="error-text "></span>
-                                        </div>
-                                    </div>
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">What kind of spaces are more important to you?</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="qnthree" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text "></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Is there anyone with mobility problem or disability?</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="qnfour" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text "></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">Your long term plan about the house</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="qnfive" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text "></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                      <label for="">How private the house should be?</label><span class="text-danger">*</span><br>-->
+      <!--                                      <input type="text" name="qnsix" style="width: 100%" id="enddate">-->
+      <!--                                      <span class="error-text "></span>-->
+      <!--                                  </div>-->
+      <!--                              </div>-->
 
-                                    <div class="col-lg-12 ">
-                                        <div class="form-input mt-3">
-                                        <label for="">Requirement (No Of Bedroom, Specific Details)</label><span class="text-danger">*</span><span class="error-text name_error"></span><br>
-                                        <table class="table table-borderless">
-                                            <tr>
-                                                <td>
-                                                    <input type="text" class="form-control" name="requirenments[]" style="width: 100%" id="enddate">
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-success addreq">Add</button>
-                                                </td>
-                                            </tr>
-                                            <tbody id="addreq">
+      <!--                              <div class="col-lg-12 ">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                  <label for="">Requirement (No Of Bedroom, Specific Details)</label><span class="text-danger">*</span><span class="error-text name_error"></span><br>-->
+      <!--                                  <table class="table table-borderless">-->
+      <!--                                      <tr>-->
+      <!--                                          <td>-->
+      <!--                                              <input type="text" class="form-control" name="requirenments[]" style="width: 100%" id="enddate">-->
+      <!--                                          </td>-->
+      <!--                                          <td>-->
+      <!--                                              <button type="button" class="btn btn-success addreq">Add</button>-->
+      <!--                                          </td>-->
+      <!--                                      </tr>-->
+      <!--                                      <tbody id="addreq">-->
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    </div>
-                                    <div class="col-lg-12 ">
-                                        <div class="form-input mt-3">
-                                        <label for="">Family Members</label><span class="text-danger">*</span><span class="error-text name_error"></span><br>
-                                        <table class="table table-borderless">
-                                            <tr>
-                                                <td>
-                                                    <input type="text" class="form-control" name="member[]" style="width: 100%" id="enddate">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" name="age[]" style="width: 100%" id="enddate">
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-success addfamily">Add</button>
-                                                </td>
-                                            </tr>
-                                            <tbody id="familyadd">
+      <!--                                      </tbody>-->
+      <!--                                  </table>-->
+      <!--                              </div>-->
+      <!--                              </div>-->
+      <!--                              <div class="col-lg-12 ">-->
+      <!--                                  <div class="form-input mt-3">-->
+      <!--                                  <label for="">Family Members</label><span class="text-danger">*</span><span class="error-text name_error"></span><br>-->
+      <!--                                  <table class="table table-borderless">-->
+      <!--                                      <tr>-->
+      <!--                                          <td>-->
+      <!--                                              <input type="text" class="form-control" name="member[]" style="width: 100%" id="enddate">-->
+      <!--                                          </td>-->
+      <!--                                          <td>-->
+      <!--                                              <input type="text" class="form-control" name="age[]" style="width: 100%" id="enddate">-->
+      <!--                                          </td>-->
+      <!--                                          <td>-->
+      <!--                                              <button type="button" class="btn btn-success addfamily">Add</button>-->
+      <!--                                          </td>-->
+      <!--                                      </tr>-->
+      <!--                                      <tbody id="familyadd">-->
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    </div>
-                                </div>
+      <!--                                      </tbody>-->
+      <!--                                  </table>-->
+      <!--                              </div>-->
+      <!--                              </div>-->
+      <!--                          </div>-->
 
-                        </div>
-                    </div>
-                </div>
+      <!--                  </div>-->
+      <!--              </div>-->
+      <!--          </div>-->
 
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary ">Save </button>
-            </div>
-        </form>
-          </div>
-        </div>
-      </div>
+      <!--      </div>-->
+      <!--      <div class="modal-footer">-->
+      <!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+      <!--        <button type="submit" class="btn btn-primary ">Save </button>-->
+      <!--      </div>-->
+      <!--  </form>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
 
       <div class="modal fade" id="createLead2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1000,7 +1008,7 @@
                                     {{-- <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Lead ID</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="leadsid">
+                                            <select class="form-select" name="leadsid">
                                                 <option value="">-- Choose Lead --</option>
 
                                                 <option></option>
@@ -1018,7 +1026,7 @@
                                         <div class="form-input mt-3">
                                             <label for="">Mobile Number</label><span class="text-danger">*</span><br>
                                             <input type="tel" name="phnumber" id="phnumber" class="form-control" style="width:100%" required>
-                                            <span class="error-text role_error"></span>
+                                            <span class="error-text phnum_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -1040,43 +1048,46 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Google Map link</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%" required>
+                                            <input type="url" name="maplocation" id="maplocation" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Plot Area</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="plotarea" id="plotarea" class="form-control" style="width:100%" required>
+                                            <input type="number" name="plotarea" id="plotarea" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <h6 class="mt-3">Basic Information</h6>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
+                                            @php
+                                                    $today = date("Y-m-d");
+                                             @endphp
                                             <label for="">Start Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="startdate" style="width: 100%" id="startdate" required>
+                                            <input type="date" min="@php echo $today; @endphp" name="startdate" style="width: 100%" id="startdate" required>
                                             <span class="error-text password_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">End Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="enddate" style="width: 100%" id="enddate" required>
-                                            <span class="error-text mobilenumber_error"></span>
+                                            <input type="date" name="enddate" style="width: 100%" id="enddate" required min="@php echo $today; @endphp">
+                                            <span class="error-text date_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Budget Value</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="budgetvalue" style="width: 100%" id="enddate" required>
+                                            <input type="number" name="budgetvalue" style="width: 100%" id="enddate" required>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Payment</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="payment" required>
+                                            <select class="form-select" name="payment" required>
                                                 <option value="">-- Choose Payment --</option>
                                                 <option value="Total Investment">Total Investment</option>
                                                 <option value="Loan">Loan</option>
@@ -1087,21 +1098,21 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Clients Availability on the site</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="availability" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="availability" style="width: 100%" id="" required>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Occupation</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="occupation" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="occupation" style="width: 100%" id="" required>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">What kind of style do you prefer</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="qnone" required>
+                                            <select class="form-select" name="qnone" required>
                                                 <option value="">-- Choose Option --</option>
                                                 <option value="Apartments">Apartments</option>
                                                 <option value="Bungalows">Bungalows</option>
@@ -1115,7 +1126,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">How much time do you prefer to spend in the different areas of the house?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qntwo" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="qntwo" style="width: 100%" id="" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
@@ -1123,28 +1134,28 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">What kind of spaces are more important to you?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnthree" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="qnthree" style="width: 100%" id="" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">Is there anyone with mobility problem or disability?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfour" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="qnfour" style="width: 100%" id="" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">Your long term plan about the house</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfive" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="qnfive" style="width: 100%" id="" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">How private the house should be?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnsix" style="width: 100%" id="enddate" required>
+                                            <input type="text" name="qnsix" style="width: 100%" id="" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>

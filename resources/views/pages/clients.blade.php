@@ -251,7 +251,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-input mt-3">
                                         <label for="">Lead ID</label><span class="text-danger">*</span><br>
-                                        <select class="form-control leadid" name="leadid">
+                                        <select class="form-select leadid" name="leadid">
                                             <option value="">-- Choose Leads --</option>
                                             @if($leads)
                                                 @foreach ($leads as $l)
@@ -307,7 +307,7 @@
                                     </div>
                                     <div class="form-input mt-3">
                                         <label for="">Type Of Services</label><span class="text-danger">*</span><br>
-                                        <select class="form-control" name="services" id="services" required>
+                                        <select class="form-select" name="services" id="services" required>
                                             <option value="">-- Select Services --</option>
                                             <option value="Construction">Construction</option>
                                             <option value="Renovation">Renovation</option>
@@ -319,7 +319,7 @@
                                     </div>
                                     <div class="form-input mt-3">
                                         <label for="">Choose Package</label><span class="text-danger">*</span><br>
-                                        <select class="form-control" name="package" id="services" required>
+                                        <select class="form-select" name="package" id="services" required>
                                             <option value="">-- Package --</option>
                                             <option value="1">Basic</option>
                                             <option value="2">Standard</option>
@@ -332,7 +332,7 @@
                                     </div>
                                     <div class="form-input mt-3">
                                         <label for="">Region</label><span class="text-danger">*</span><br>
-                                        <select class="form-control" name="dealershipregion" id="dealershipregion" required>
+                                        <select class="form-select" name="dealershipregion" id="dealershipregion" required>
                                             <option value="">-- Select Region --</option>
                                             @foreach ($district as $district)
                                                 <option value="{{ $district->district_code }}">{{ $district->district_name }}</option>
@@ -342,7 +342,7 @@
                                     </div>
                                     <div class="form-input mt-3">
                                         <label for="">Area</label><span class="text-danger">*</span><br>
-                                        <select class="form-control" name="dealershiparea" id="dealershiparea" required>
+                                        <select class="form-select" name="dealershiparea" id="dealershiparea" required>
                                             <option value="">-- Select Areas --</option>
 
                                         </select>
@@ -365,7 +365,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-input mt-3">
                                                 <label for="">UOM</label><span class="text-danger">*</span><br>
-                                                <select class="form-control" name="plotareauom">
+                                                <select class="form-select" name="plotareauom">
                                                     <option value="Sqft" selected>Sqft</option>
                                                     <option value="acres">acres</option>
                                                     <option value="hectares">hectares</option>
@@ -389,7 +389,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-input mt-3">
                                                 <label for="">UOM</label><span class="text-danger">*</span><br>
-                                                <select class="form-control" name="plotareauom">
+                                                <select class="form-select" name="plotareauom">
                                                     <option value="Sqft" selected>Sqft</option>
                                                     <option value="acres">acres</option>
                                                     <option value="hectares">hectares</option>
@@ -438,7 +438,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             {{-- <label for="">Client Status</label><span class="text-danger">*</span><br> --}}
-                            <select class="form-control" name="clientstatus" required>
+                            <select class="form-select" name="clientstatus" required>
                                 <option value="">-- Select Status --</option>
                                 <option value="2">Approve Client</option>
                                 <option value="3">Reject Client</option>

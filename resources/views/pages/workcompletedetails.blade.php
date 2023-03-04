@@ -46,7 +46,7 @@
                                             <div class="tab-pane fade show " id="v-pills-{{ $s->stage_num }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                                 @if(Auth::user()->usertype == '3')
                                                     <div class="row">
-                                                        @if($completionofworks = App\Models\Completionofwork::where('estid',$s->estid)->where('stageid',$s->stage_num)->where('allimages_status',1)->get())
+                                                        @if($completionofworks = App\Models\completionofwork::where('estid',$s->estid)->where('stageid',$s->stage_num)->where('allimages_status',1)->get())
 
                                                             @if($completionofworks->count() == 0)
                                                                 <div class="col-lg-12">

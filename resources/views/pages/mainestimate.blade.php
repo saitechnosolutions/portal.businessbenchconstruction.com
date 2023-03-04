@@ -13,12 +13,12 @@
                             @endif
                             @if($req->admin_status == '2')
                             <div class="alert alert-success" role="alert">
-                                Client Approve the estimate
+                                Client Approved the estimate
                               </div>
                             @endif
                             @if($req->admin_status == '4')
                             <div class="alert alert-success" role="alert">
-                                AE Approve the estimate
+                                AE Approved the estimate
                               </div>
                             @endif
                             @if($req->admin_status == '5')

@@ -42,6 +42,8 @@
                     <span>
                         @if($activeprojects = App\Models\Client::where('completed_status',null)->get()->count())
                             {{ $activeprojects }}
+                            @else
+                            0
                         @endif
                     </span>
                 </div>

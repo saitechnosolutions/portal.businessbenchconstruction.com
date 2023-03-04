@@ -118,6 +118,7 @@
                                             <label for="">Password</label><span class="text-danger">*</span><br>
                                             <input type="text" name="password" style="width: 95%" id="password" required>
                                             <span class="error-text password_error"></span>
+                                            <span class="error-text password_good" style="color:green"></span>
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Mobile Number</label><span class="text-danger">*</span><br>

@@ -108,6 +108,7 @@
                 @if(Auth::user()->usertype == '3')
 
                     @if($raisebutton = App\Models\Payment::where('estimateid',$s->estimateid)->where('id',$s->id)->where('stageid',$s->stageid)->first())
+                    
                         @if($raisebutton->approval_status == '0')
                                 <span class="badge bg-success">AE Raise Payment</span>
                         @endif
@@ -479,7 +480,10 @@
                                     @endif
                                     @if($raisebutton->approval_status == '4')
                                     <button class="btn btn-success w-100" >Payment Approve AE</button>
-                                @endif
+                                    @endif
+                                     @if($raisebutton->approval_status == '6')
+                                        <button class="btn btn-warning w-100" >Waiting for payment</button>
+                                     @endif
                                 @endif
                             @endif
 
@@ -503,8 +507,11 @@
                                         <button class="btn btn-success w-100" >Client Amount paid</button>
                                     @endif
                                     @if($raisebutton->approval_status == '4')
-                                    <button class="btn btn-success w-100" >Payment Approve AE</button>
-                                @endif
+                                        <button class="btn btn-success w-100" >Payment Approve AE</button>
+                                    @endif
+                                    @if($raisebutton->approval_status == '6')
+                                        <button class="btn btn-warning w-100" >Waiting for payment</button>
+                                     @endif
                                 @endif
                             @endif
 

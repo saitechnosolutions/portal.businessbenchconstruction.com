@@ -39,10 +39,10 @@
                             @csrf
 
                         <div class="form-input">
-                            <input type="text" name="userid" placeholder="User ID" style="text-transform:uppercase">
+                            <input type="text" name="userid" placeholder="User ID" style="text-transform:uppercase" required>
                         </div>
                         <div class="form-input position-relative">
-                            <input type="password" name="password" placeholder="Password" class="login_password" > 
+                            <input type="password" name="password" placeholder="Password" class="login_password" required> 
                             <div class="eye"><i class="far fa-eye-slash"></i></div>
                         </div>
 

@@ -1,7 +1,7 @@
 <div class="container-fluid mt-3">
     <div class="row">
             <div class="col-lg-8">
-                {{-- <div class="breadcrumb flat ">
+                <div class="breadcrumb flat ">
                     @if (Request::segment(1) != 'dashboard')
 
                         <a style="text-transform: capitalize" class="active">Dashboard</a>
@@ -68,7 +68,7 @@
             @endforeach
 
 
-                </div> --}}
+                </div> 
 
             </div>
             @if (Request::segment('1') != 'dashboard')

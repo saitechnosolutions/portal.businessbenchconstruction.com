@@ -55,7 +55,7 @@ class EstimaterequestController extends Controller
 
         $quantitysurveyor = DB::table('users')
         ->select('*')
-        ->where('role','=',7)
+        ->whereIn('role',[7,13])
         ->get();
 
         return view('pages.estimaterequest',compact('estimatereq','estimateid','quantitysurveyor','additionalestmasters'));

@@ -12,7 +12,6 @@
                             <h4 class="section-heading">Leads List</h4>
                         </div>
 
-
                         <div class="col-lg-3">
 
                             <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#createLead">
@@ -53,7 +52,7 @@
                                                             <td>{{ $lead->email }}</td>
                                                             <td>{{ $lead->address }}</td>
                                                             <td><button class="btn btn-info text-white leadview" data-leadid={{ $lead->leadid }} ><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-                                                            <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->id}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                                            <td><button class="btn btn-primary text-white editlead" data-id="{{$lead->leadid}}" data-bs-toggle="modal" data-bs-target="#editLead"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                                                             <td><button class="btn btn-danger text-white" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                                         </tr>
                                                     @endforeach
@@ -104,22 +103,22 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Name</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="name" style="width: 100%" id="name">
+                                            <input type="text" name="name" style="width: 100%" id="name" required>
                                             <span class="error-text name_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Mobile Number</label><span class="text-danger">*</span><br>
-                                            <input type="tel" name="phnumber" id="phnumber" class="form-control" style="width:100%">
+                                            <input type="tel" name="phnumber" id="phnumber" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">E-mail</label><span class="text-danger">*</span><br>
-                                            <input type="email" name="emailid" id="emailid" class="form-control" style="width:100%">
-                                            <span class="error-text role_error"></span>
+                                            <input type="email" name="emailid" id="email" class="form-control" style="width:100%" required>
+                                            <span class="error-text email_error"></span>
                                         </div>
                                     </div>
 
@@ -127,51 +126,54 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">Address</label><span class="text-danger">*</span><br>
-                                            <textarea class="form-control" name="address" id="address"></textarea>
+                                            <textarea class="form-control" name="address" id="address" required></textarea>
                                             <span class="error-text email_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Google Map link</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%">
+                                            <input type="url" name="maplocation" id="maplocation" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Plot Area</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="plotarea" id="plotarea" class="form-control" style="width:100%">
+                                            <input type="number" name="plotarea" id="plotarea" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                     </div>
                                     <h6 class="mt-3">Basic Information</h6>
                                     <div class="col-lg-6">
+                                          @php
+                                                    $today = date("Y-m-d");
+                                             @endphp
                                         <div class="form-input mt-3">
                                             <label for="">Start Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="startdate" style="width: 100%" id="startdate">
+                                            <input type="date" name="startdate" style="width: 100%" min="@php echo $today; @endphp" id="startdate" required>
                                             <span class="error-text password_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">End Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="enddate" style="width: 100%" id="enddate">
-                                            <span class="error-text mobilenumber_error"></span>
+                                            <input type="date" name="enddate" style="width: 100%" id="enddate" min="@php echo $today; @endphp" required>
+                                            <span class="error-text date_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Budget Value</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="budgetvalue" style="width: 100%" id="enddate">
+                                            <input type="number" name="budgetvalue" style="width: 100%" id="enddate" required>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Payment</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="payment">
-                                                <option>-- Choose Payment --</option>
+                                            <select class="form-control" name="payment" required>
+                                                <option value="">-- Choose Payment --</option>
                                                 <option value="Total Investment">Total Investment</option>
                                                 <option value="Loan">Loan</option>
                                             </select>
@@ -181,13 +183,13 @@
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
                                             <label for="">Clients Availability on the site</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="availability" style="width: 100%" id="enddate">
+                                            <input type="text" name="availability" style="width: 100%" id="enddate" required>
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-input mt-3">
-                                            <label for="">Occupation</label><span class="text-danger">*</span><br>
+                                            <label for="">Occupation</label><<br>
                                             <input type="text" name="occupation" style="width: 100%" id="enddate">
                                             <span class="error-text mobilenumber_error"></span>
                                         </div>
@@ -195,8 +197,8 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">What kind of style do you prefer</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="qnone">
-                                                <option>-- Choose Option --</option>
+                                            <select class="form-control" name="qnone" required>
+                                                <option value="">-- Choose Option --</option>
                                                 <option value="Apartments">Apartments</option>
                                                 <option value="Bungalows">Bungalows</option>
                                                 <option value="Villas">Villas</option>
@@ -209,7 +211,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">How much time do you prefer to spend in the different areas of the house?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qntwo" style="width: 100%" id="enddate">
+                                            <input type="text" name="qntwo" style="width: 100%"  required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
@@ -217,28 +219,28 @@
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">What kind of spaces are more important to you?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnthree" style="width: 100%" id="enddate">
+                                            <input type="text" name="qnthree" style="width: 100%" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">is there anyone with mobility problem or disability?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfour" style="width: 100%" id="enddate">
+                                            <input type="text" name="qnfour" style="width: 100%" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">Your long term plan about the house</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnfive" style="width: 100%" id="enddate">
+                                            <input type="text" name="qnfive" style="width: 100%" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-input mt-3">
                                             <label for="">How private the house should be?</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="qnsix" style="width: 100%" id="enddate">
+                                            <input type="text" name="qnsix" style="width: 100%" required>
                                             <span class="error-text "></span>
                                         </div>
                                     </div>
@@ -267,10 +269,10 @@
                                         <table class="table table-borderless">
                                             <tr>
                                                 <td>
-                                                    <input type="text" class="form-control" name="member[]" style="width: 100%" id="enddate">
+                                                    <input type="text" class="form-control" name="member[]" style="width: 100%" >
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="age[]" style="width: 100%" id="enddate">
+                                                    <input type="text" class="form-control" name="age[]" style="width: 100%" >
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-success addfamily">Add</button>

@@ -68,7 +68,10 @@
                                                                 @if($engineers->rmid == '')
                                                                 <button class="btn btn-primary text-white assignedtorm" data-engid={{ $engineers->engineerid }}><i class="fa fa-users" aria-hidden="true"></i></button>
                                                                 @else
-                                                                <span class="badge bg-info">{{ $engineers->rmid }}</span>
+                                                                 @if($name = App\Models\User::where('userid','=',$engineers->rmid)->first())
+                                                                <span class="badge bg-success">{{$name->name}}</span>
+                                                            @endif
+                                                                <!--<span class="badge bg-info">{{ $engineers->rmid }}</span>-->
                                                                 @endif
 
                                                             </td>
@@ -110,7 +113,10 @@
                                                             @if($engineers->rmid == '')
                                                             <button class="btn btn-primary text-white assignedtorm" data-engid={{ $engineers->engineerid }}><i class="fa fa-users" aria-hidden="true"></i></button>
                                                             @else
-                                                            <span class="badge bg-info">{{ $engineers->rmid }}</span>
+                                                             @if($name = App\Models\User::where('userid','=',$engineers->rmid)->first())
+                                                                <span class="badge bg-success">{{$name->name}}</span>
+                                                            @endif
+                                                            <!--<span class="badge bg-info">{{ $engineers->rmid }}</span>-->
                                                             @endif
 
                                                         </td>
@@ -206,22 +212,25 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Start Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="startdate" style="width: 100%" id="startdate" required>
+                                              @php
+                                                    $today = date("Y-m-d");
+                                             @endphp
+                                            <input type="date" min="@php echo $today; @endphp" name="startdate" id="startdate" style="width: 100%" id="startdate" required>
                                             <span class="error-text password_error"></span>
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">End Date</label><span class="text-danger">*</span><br>
-                                            <input type="date" name="enddate" style="width: 100%" id="enddate" required>
-                                            <span class="error-text mobilenumber_error"></span>
+                                            <input type="date" name="enddate" style="width: 100%" id="enddate" required min="@php echo $today; @endphp">
+                                            <span class="error-text date_error"></span>
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Address</label><span class="text-danger">*</span><br>
                                             <textarea class="form-control" name="address" id="address" required></textarea>
-                                            <span class="error-text email_error"></span>
+                                            <span class="error-text address_error"></span>
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Google Map link</label><span class="text-danger">*</span><br>
-                                            <input type="text" name="maplocation" id="maplocation" class="form-control" style="width:100%" required>
+                                            <input type="url" name="maplocation" id="maplocation" class="form-control" style="width:100%" required>
                                             <span class="error-text role_error"></span>
                                         </div>
                                         {{-- <div class="form-input mt-3">
@@ -239,7 +248,7 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">E-mail</label><span class="text-danger">*</span><br>
-                                            <input type="email" name="emailid" id="emailid" class="form-control" style="width:100%" required>
+                                            <input type="email" name="emailid" id="email" class="form-control" style="width:100%" required>
                                             <span class="error-text email_error"></span>
                                         </div>
                                         <div class="form-input mt-3">
@@ -249,7 +258,7 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Region</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="dealershipregion" id="dealershipregion" required>
+                                            <select class="form-select" name="dealershipregion" id="dealershipregion" required>
                                                 <option value="">-- Select Region --</option>
                                                 @foreach ($district as $district)
                                                     <option value="{{ $district->district_code }}">{{ $district->district_name }}</option>
@@ -259,7 +268,7 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Area</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="dealershiparea" id="dealershiparea" required>
+                                            <select class="form-select" name="dealershiparea" id="dealershiparea" required>
                                                 <option value="">-- Select Areas --</option>
 
                                             </select>
@@ -365,7 +374,7 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Region</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="dealershipregion" id="editregion">
+                                            <select class="form-select" name="dealershipregion" id="editregion">
                                                 <option>-- Select Region --</option>
 
                                             </select>
@@ -373,7 +382,7 @@
                                         </div>
                                         <div class="form-input mt-3">
                                             <label for="">Area</label><span class="text-danger">*</span><br>
-                                            <select class="form-control" name="dealershiparea" id="editarea">
+                                            <select class="form-select" name="dealershiparea" id="editarea">
                                                 <option>-- Select Areas --</option>
 
                                             </select>
@@ -440,7 +449,7 @@
                 <div class="form-input mt-3">
                     <input type="hidden" name="engid" id="engid1">
                     <label for="">Select RM</label><span class="text-danger">*</span><br>
-                    <select class="form-control" name="assigneng">
+                    <select class="form-select" name="assigneng">
                         <option value="">-- Select RM --</option>
 
                         @if($getrm = App\Models\User::where('role',8)->get())

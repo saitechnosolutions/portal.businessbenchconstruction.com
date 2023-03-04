@@ -127,7 +127,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-success stage1add mb-3"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                                    <button type="button" class="btn btn-danger remove"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                                 </td>
                                                             </tr>
 
@@ -143,7 +143,7 @@
                                                                 <input type="hidden" name="calcstage[]" value="{{ $details->stageid }}">
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="3">Client Percentage</td>
+                                                                <td colspan="3">Engineer Percentage</td>
                                                                 <td colspan="3"><input type="number" class="form-control clientpercentage" name="clientpercentage[]"></td>
                                                             </tr>
                                                             <tr>

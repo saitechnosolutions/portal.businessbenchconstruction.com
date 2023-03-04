@@ -1362,8 +1362,8 @@ $(".alluploaded").on("click", function () {
                 },
                 error: function (data) {
                     Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
+                        "Error!",
+                        "Check the error.",
                         "success"
                     );
                 },
@@ -1405,8 +1405,8 @@ $(".clientapprove").on("click", function () {
                 },
                 error: function (data) {
                     Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
+                        "Error!",
+                        "Please check the error",
                         "success"
                     );
                 },
@@ -1448,8 +1448,8 @@ $(".clientreject").on("click", function () {
                 },
                 error: function (data) {
                     Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
+                        "Error!",
+                        "Kindly check the error",
                         "success"
                     );
                 },
@@ -3116,8 +3116,8 @@ $(".aereject").on("click", function () {
                 url: `/aereject/${approveid}`,
                 success: function (data) {
                     Swal.fire(
-                        "Approved!",
-                        "Your File Approved.",
+                        "Reject!",
+                        "Your File Rejected.",
                         "success"
                     ).then((result) => {
                         location.reload();
@@ -3127,8 +3127,8 @@ $(".aereject").on("click", function () {
                 },
                 error: function (data) {
                     Swal.fire(
-                        "Deleted!",
-                        "Your file has been rejected.",
+                        "Error!",
+                        "Kindly Check Error.",
                         "success"
                     );
                 },
@@ -3169,8 +3169,8 @@ $(document).on('submit','#saveadditionalestimate',function(){
         processData: false,
         success: function(data) {
             Swal.fire(
-                "Approved!",
-                "Your File Approved.",
+                "Additional Estimate!",
+                "Your File Saved.",
                 "success"
             ).then((result) => {
                 location.reload();
@@ -4558,7 +4558,7 @@ $(".aerejectest").on("click",function(){
                 url: `/aerejectestimate/${addnestid}`,
                 success: function (data) {
                     Swal.fire(
-                        "Approved!",
+                        "Reject!",
                         "Estimate Rejected",
                         "success"
                     ).then((result) => {
@@ -4637,21 +4637,33 @@ $(document).on("change","#role",function(){
     {
 
         $("#stagemaster").prop('checked', true);
+        $("#stagemaster").val("1");
         $("#zonemenu").prop('checked', true);
+        $("#zonemenu").val("1");
         $("#areamenu").prop('checked', true);
+        $("#areamenu").val("1");
         $("#drawingmenu").prop('checked', true);
+        $("#drawingmenu").val("1");
         $("#engineersmenu").prop('checked', true);
+        $("#engineersmenu").val("1");
         $("#usersmenu").prop('checked', true);
+        $("#usersmenu").val("1");
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
         $("#estimatemenu").prop('checked', true);
+        $("#estimatemenu").val("1");
         $("#leadsmenu").prop('checked', true);
+        $("#leadsmenu").val("1");
         $("#designationmenu").prop('checked', true);
+        $("#designationmenu").val("1");
     }
 
     if(role == "2" || role == '12')
     {
         $("#leadsmenu").prop('checked', true);
+        $("#leadsmenu").val("1");
         $("#engineersmenu").prop('checked', true);
+        $("#engineersmenu").val("1");
 
         $("#stagemaster").prop('checked', false);
         $("#zonemenu").prop('checked', false);
@@ -4669,7 +4681,9 @@ $(document).on("change","#role",function(){
     if(role == "3")
     {
         $("#leadsmenu").prop('checked', true);
+        $("#leadsmenu").val("1");
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
 
         $("#stagemaster").prop('checked', false);
         $("#zonemenu").prop('checked', false);
@@ -4687,7 +4701,9 @@ $(document).on("change","#role",function(){
     if(role == "5" || role == "14" || role == "18" || role == "20")
     {
         $("#drawingmenu").prop('checked', true);
+        $("#drawingmenu").val("1");
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
         $("#engineersmenu").prop('checked', false);
         $("#stagemaster").prop('checked', false);
         $("#zonemenu").prop('checked', false);
@@ -4701,7 +4717,9 @@ $(document).on("change","#role",function(){
     if(role == "7" || role == "13")
     {
         $("#estimatemenu").prop('checked', true);
+        $("#estimatemenu").val("1");
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
         $("#engineersmenu").prop('checked', false);
 
         $("#stagemaster").prop('checked', false);
@@ -4718,7 +4736,9 @@ $(document).on("change","#role",function(){
     {
         $("#estimatemenu").prop('checked', false);
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
         $("#engineersmenu").prop('checked', true);
+        $("#engineersmenu").val("1");
 
         $("#stagemaster").prop('checked', false);
         $("#zonemenu").prop('checked', false);
@@ -4734,7 +4754,9 @@ $(document).on("change","#role",function(){
     {
         $("#estimatemenu").prop('checked', false);
         $("#clientsmenu").prop('checked', true);
+        $("#clientsmenu").val("1");
         $("#engineersmenu").prop('checked', true);
+        $("#engineersmenu").val("1");
 
         $("#stagemaster").prop('checked', false);
         $("#zonemenu").prop('checked', false);

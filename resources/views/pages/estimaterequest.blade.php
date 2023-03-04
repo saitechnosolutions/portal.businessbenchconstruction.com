@@ -102,7 +102,10 @@
                                                                                  @if($est->assigned_to == null)
                                                                                     <button class="btn btn-primary text-white quantityallocation" data-estid="{{$est->id}}"><i class="fa fa-users" aria-hidden="true"></i></button>
                                                                                         @else
-                                                                                    <span class="badge bg-success">{{$est->assigned_to}}</span>
+                                                                                        @if($name = App\Models\User::where('userid','=',$est->assigned_to)->first())
+                                                                <span class="badge bg-success">{{$name->name}}</span>
+                                                            @endif
+                                                                                    
                                                                                 @endif
                                                                             </td>
                                                                         @endif

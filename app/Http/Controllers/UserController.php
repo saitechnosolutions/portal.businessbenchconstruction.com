@@ -96,8 +96,10 @@ class UserController extends Controller
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';             //  smtp host
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'saitechnosolutionscbe@gmail.com';
-                    $mail->Password = 'lwysjixcfqanrtgr';
+                    // $mail->Username = 'saitechnosolutionscbe@gmail.com';
+                    // $mail->Password = 'lwysjixcfqanrtgr';
+                    $mail->Username = 'info@businessbench.in';
+                    $mail->Password = 'xjonooiofbrehtfn';
                     $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
                     $mail->Port = 587;                          // port - 587/465
 

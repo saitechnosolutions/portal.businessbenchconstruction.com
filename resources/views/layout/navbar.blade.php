@@ -19,39 +19,39 @@
                 <div class="col-lg-7">
                     <div class="navbar" >
                         <ul>
-                            <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/dashboard') active @endif"><a href="/dashboard">Home</a></li>
+                            <li class="@if(Request::segment(1) == 'dashboard') active @endif"><a href="/dashboard">Home</a></li>
 
                             @if(Auth::user()->drawings == '1')
                                 @if(Auth::user()->usertype == '5' || Auth::user()->usertype == '14' || Auth::user()->usertype == '18' || Auth::user()->usertype == '20' )
-                                    <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/drawings') active @endif"><a href="/drawings">Projects</a></li>
+                                    <li class="@if(Request::segment(1) == 'drawings')  active @endif"><a href="/drawings">Projects</a></li>
                                     @else
-                                    <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/drawings') active @endif"><a href="/drawings">Drawings</a></li>
+                                    <li class="@if(Request::segment(1) == 'drawings')  active @endif"><a href="/drawings">Drawings</a></li>
                                 @endif
 
                             @endif
                             @if(Auth::user()->engineers == '1')
-                                <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/engineers') active @endif"><a href="/engineers">Engineers</a></li>
+                                <li class="@if(Request::segment(1) == 'engineers')  active @endif" ><a href="/engineers">Engineers</a></li>
                             @endif
                             @if(Auth::user()->users == '1')
-                                <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/user') active @endif"><a href="/user">Users</a></li>
+                                <li class="@if(Request::segment(1) == 'user')  active @endif"><a href="/user">Users</a></li>
                             @endif
                             @if(Auth::user()->clients == '1')
-                            <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/clients') active @endif"><a href="/clients">Clients</a></li>
+                            <li class="@if(Request::segment(1) == 'clients')  active @endif"><a href="/clients">Clients</a></li>
                         @endif
 
                         @if(Auth::user()->estimates == '1')
                             @if(Auth::user()->usertype == '7' || Auth::user()->usertype == '13')
-                                <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/estimatereq') active @endif"><a href="/estimatereq">Projects</a></li>
+                                <li class="@if(Request::segment(1) == 'estimatereq')  active @endif "><a href="/estimatereq">Projects</a></li>
                                 @else
-                                <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/estimatereq') active @endif"><a href="/estimatereq">Estimate</a></li>
+                                <li class="@if(Request::segment(1) == 'estimatereq')  active @endif "><a href="/estimatereq">Estimate</a></li>
                             @endif
 
                         @endif
                         {{-- @if(Auth::user()->estimates == '1')
-                            <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/package') active @endif"><a href="/package">Package</a></li>
+                            <li class="@if(url()->current()=='https://portal.businessbenchconstruction.com/package') active @endif"><a href="/package">Package</a></li>
                         @endif --}}
                          @if(Auth::user()->leads == '1')
-                            <li class="@if(url()->current()=='https://businessbenchportal.saitechnosolutions.net/leads') active @endif"><a href="/leads">Leads</a></li>
+                            <li class="@if(Request::segment(1) == 'leads')  active @endif"><a href="/leads">Leads</a></li>
                          @endif
 
                             @if(Auth::user()->users == '1' && Auth::user()->engineers == '1' && Auth::user()->drawings == '1' && Auth::user()->area == '1' && Auth::user()->zones == '1' && Auth::user()->project == '1')

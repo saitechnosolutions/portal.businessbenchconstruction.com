@@ -51,7 +51,7 @@ class LeadsController extends Controller
         }
         $telecaller = DB::table('users')
         ->select('*')
-        ->where('role','=',2)
+        ->whereIn('role',[12,2])
         ->orderBy('id', 'DESC')
         ->get();
 
@@ -261,22 +261,22 @@ class LeadsController extends Controller
         $leadid = $_POST['view_id'];
         $getleads = DB::table('leads')
         ->select('*')
-        ->where('id','=',$leadid)
+        ->where('leadid','=',$leadid)
         ->first();
 
-        $var = $getleads->leadid;
+        // $var = $getleads->leadid;
 
         $get_id = DB::table('clientfamilydetails')
         ->select('*')
-        ->where('leadid','=',$var)
+        ->where('leadid','=',$leadid)
         ->get();
 
         $get_require = DB::table('house_requiremnts')
         ->select('*')
-        ->where('leadid','=',$var)
+        ->where('leadid','=',$leadid)
         ->get();
 
-        return response()->json([$getleads,$get_id,$get_require,$var]);
+        return response()->json([$getleads,$get_id,$get_require,$leadid]);
     }
 
     public function LeadUpdate(Request $request){
@@ -392,17 +392,25 @@ class LeadsController extends Controller
         ->update([
             "telecaller_assign_id"=>$telecaller
         ]);
-        
+
         $users = DB::table('users')
         ->select('*')
         ->where('userid','=',$telecaller)
         ->first();
-        
+
+        DB::table('notifications')
+            ->insert([
+                "notificationview"=>$telecaller,
+                "notificationstatus"=>0,
+                "purposeid"=>$telecaller,
+                "purposename" => "$leadid Lead Assigned Telecaller Head"
+                ]);
+
         if($assigned)
         {
                     require base_path("vendor/autoload.php");
             $mail = new PHPMailer(true);     // Passing `true` enables exceptions
-        
+
             try {
                 // Email server settings
                 $mail->SMTPDebug = 0;
@@ -413,29 +421,29 @@ class LeadsController extends Controller
                 $mail->Password = 'lwysjixcfqanrtgr';
                 $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
                 $mail->Port = 587;
-        
+
                 $mail->setFrom('businessbench@gmail.com', 'Business Bench');
                 $mail->addAddress($users->email);
                 // $mail->addCC($request->emailCc);
                 // $mail->addBCC($request->emailBcc);
-        
+
                 // $mail->addReplyTo('kesavaraj@saitechnosolutions.net', 'Kesavaraj');
-        
+
                 // if(isset($_FILES['emailAttachments'])) {
                             //     for ($i=0; $i < count($_FILES['emailAttachments']['tmp_name']); $i++) {
                             //         $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
                             //     }
                 // }
-        
-        
+
+
                 $mail->isHTML(true);                // Set email content format to HTML
-        
+
                 $mail->Subject = "Lead Assigned";
                 $mail->Body    =
                 "$leadid Assigned for Telecaller Head";
-        
+
                 // $mail->AltBody = plain text version of email body;
-        
+
                 if (!$mail->send()) {
                     return back()->with("failed", "Email not sent.")->withErrors($mail->ErrorInfo);
                 } else {
@@ -459,17 +467,25 @@ class LeadsController extends Controller
         ->update([
             "ae_assign_id"=>$ae
         ]);
-        
+
         $aedetails = DB::table('engineers')
         ->select('*')
         ->where('engineerid','=',$ae)
         ->first();
-        
+
+        DB::table('notifications')
+            ->insert([
+                "notificationview"=>$ae,
+                "notificationstatus"=>0,
+                "purposeid"=>$leadid,
+                "purposename" => "$leadid Lead Assigned For AE"
+                ]);
+
         if($assignae)
         {
             require base_path("vendor/autoload.php");
             $mail = new PHPMailer(true);     // Passing `true` enables exceptions
-        
+
             try {
                 // Email server settings
                 $mail->SMTPDebug = 0;
@@ -480,29 +496,29 @@ class LeadsController extends Controller
                 $mail->Password = 'lwysjixcfqanrtgr';
                 $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
                 $mail->Port = 587;
-        
+
                 $mail->setFrom('businessbench@gmail.com', 'Business Bench');
                 $mail->addAddress($aedetails->emailid);
                 // $mail->addCC($request->emailCc);
                 // $mail->addBCC($request->emailBcc);
-        
+
                 // $mail->addReplyTo('kesavaraj@saitechnosolutions.net', 'Kesavaraj');
-        
+
                 // if(isset($_FILES['emailAttachments'])) {
                             //     for ($i=0; $i < count($_FILES['emailAttachments']['tmp_name']); $i++) {
                             //         $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
                             //     }
                 // }
-        
-        
+
+
                 $mail->isHTML(true);                // Set email content format to HTML
-        
+
                 $mail->Subject = "Lead Assigned";
                 $mail->Body    =
                 "$leadid Assigned for Telecaller";
-        
+
                 // $mail->AltBody = plain text version of email body;
-        
+
                 if (!$mail->send()) {
                     return back()->with("failed", "Email not sent.")->withErrors($mail->ErrorInfo);
                 } else {
@@ -512,7 +528,7 @@ class LeadsController extends Controller
                 return back()->with('error', 'Message could not be sent.');
             }
         }
-        
+
     }
 
     public function changeleadstatus(Request $request)

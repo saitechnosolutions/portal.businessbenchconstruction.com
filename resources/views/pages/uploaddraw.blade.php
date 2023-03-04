@@ -115,9 +115,10 @@
                                         <div class="d-flex align-items-start">
                                             <div class="col-lg-4 position-relative">
                                                 <div class="position-absolute" style="right:30px;top:10px">
-                                                <span class="badge bg-danger">Rejected</span>
+
                                                 <span class="badge bg-success">Approved</span>
                                                 <span class="badge bg-secondary">Pending</span>
+                                                <span class="badge bg-danger">Rejected</span>
 
                                                 </div>
 
@@ -128,19 +129,20 @@
                                                         @if($packagearchitect)
                                                             @foreach ($packagearchitect as $pac)
                                                                 <button class="nav-link" @if($pac->basicpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                            {{ $pending->count() }}
-                                                                        @endif
 
-                                                                    </span>
-                                                                    <span class="badge bg-success position-absolute" style="right:55px">
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
                                                                         @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                             {{ $approved->count() }}
                                                                         @endif
 
                                                                     </span>
-                                                                    <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                     <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
                                                                         @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                             {{ $reject->count() }}
                                                                         @endif
@@ -155,19 +157,20 @@
                                                         @if($packagearchitect)
                                                             @foreach ($packagearchitect as $pac)
                                                                 <button class="nav-link @if($pac->id == '1') active @else @endif" @if($pac->standardpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                            {{ $pending->count() }}
-                                                                        @endif
 
-                                                                    </span>
-                                                                    <span class="badge bg-success position-absolute" style="right:55px">
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
                                                                         @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                             {{ $approved->count() }}
                                                                         @endif
 
                                                                     </span>
-                                                                    <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                     <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
                                                                         @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                             {{ $reject->count() }}
                                                                         @endif
@@ -183,19 +186,49 @@
                                                         @if($packagearchitect)
                                                             @foreach ($packagearchitect as $pac)
                                                                 <button class="position-relative nav-link @if($pac->id == '1') active @else @endif" @if($pac->premiumpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                    @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                        {{ $pending->count() }}
-                                                                    @endif
 
-                                                                </span>
-                                                                <span class="badge bg-success position-absolute" style="right:55px">
+                                                                <span class="badge bg-success position-absolute" style="right:85px">
                                                                     @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                         {{ $approved->count() }}
                                                                     @endif
 
                                                                 </span>
-                                                                <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                    @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                        {{ $pending->count() }}
+                                                                    @endif
+
+                                                                </span>
+                                                                <span class="badge bg-danger position-absolute" style="right:25px">
+                                                                    @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
+                                                                        {{ $reject->count() }}
+                                                                    @endif
+
+                                                                </span>
+                                                            </button>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+
+                                                    @if($pactype == 'Luxury')
+
+                                                        @if($packagearchitect)
+                                                            @foreach ($packagearchitect as $pac)
+                                                                <button class="position-relative nav-link @if($pac->id == '1') active @else @endif" @if($pac->luxurypack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
+
+                                                                <span class="badge bg-success position-absolute" style="right:85px">
+                                                                    @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
+                                                                        {{ $approved->count() }}
+                                                                    @endif
+
+                                                                </span>
+                                                                <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                    @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                        {{ $pending->count() }}
+                                                                    @endif
+
+                                                                </span>
+                                                                <span class="badge bg-danger position-absolute" style="right:25px">
                                                                     @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                         {{ $reject->count() }}
                                                                     @endif
@@ -244,6 +277,12 @@
                                                                                                 <div class="badge bg-danger mb-2">Client Rejected</div>
                                                                                                  @endif
 
+                                                                                                  @if($files->ae_status == 1)
+                                                                                                <div class="badge bg-success mb-2">AE Approved</div>
+                                                                                                    @elseif($files->ae_status == 2)
+                                                                                                <div class="badge bg-danger mb-2">AE Rejected</div>
+                                                                                                 @endif
+
                                                                                             <div class="drawicon ">
 
                                                                                                         <!--<img src="/images/{{ $files->filename }}" class="img-fluid">-->
@@ -282,6 +321,12 @@
                                                                                                 <div class="badge bg-success">Client Approved</div>
                                                                                                     @elseif($files->clientside_status == 2)
                                                                                                 <div class="badge bg-danger">Client Rejected</div>
+                                                                                                 @endif
+
+                                                                                                  @if($files->ae_status == 1)
+                                                                                                <div class="badge bg-success mb-2">AE Approved</div>
+                                                                                                    @elseif($files->ae_status == 2)
+                                                                                                <div class="badge bg-danger mb-2">AE Rejected</div>
                                                                                                  @endif
 
                                                                                             <div class="drawicon">
@@ -350,6 +395,12 @@
                                                                                                 <div class="badge bg-success mb-2">Client Approved</div>
                                                                                                     @elseif($files->clientside_status == 2)
                                                                                                 <div class="badge bg-danger mb-2">Client Rejected</div>
+                                                                                                 @endif
+
+                                                                                                  @if($files->ae_status == 1)
+                                                                                                <div class="badge bg-success mb-2">AE Approved</div>
+                                                                                                    @elseif($files->ae_status == 2)
+                                                                                                <div class="badge bg-danger mb-2">AE Rejected</div>
                                                                                                  @endif
 
                                                                                             <div class="drawicon ">
@@ -454,9 +505,10 @@
                                         <div class="d-flex align-items-start">
                                             <div class="col-lg-4 position-relative">
                                                 <div class="position-absolute" style="right:30px;top:10px">
-                                                    <span class="badge bg-danger">Rejected</span>
+
                                                     <span class="badge bg-success">Approved</span>
                                                     <span class="badge bg-secondary">Pending</span>
+                                                    <span class="badge bg-danger">Rejected</span>
 
                                                     </div>
                                                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -466,19 +518,20 @@
                                                         @if($packagestructural)
                                                             @foreach ($packagestructural as $pac)
                                                                 <button class="nav-link @if($pac->id == '1') active @else @endif" @if($pac->basicpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true" >{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                            {{ $pending->count() }}
-                                                                        @endif
 
-                                                                    </span>
-                                                                    <span class="badge bg-success position-absolute" style="right:55px">
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
                                                                         @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                             {{ $approved->count() }}
                                                                         @endif
 
                                                                     </span>
-                                                                    <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                    <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
                                                                         @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                             {{ $reject->count() }}
                                                                         @endif
@@ -493,19 +546,20 @@
                                                         @if($packagestructural)
                                                             @foreach ($packagestructural as $pac)
                                                                 <button class="nav-link @if($pac->id == '1') active @else @endif" @if($pac->standardpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                            {{ $pending->count() }}
-                                                                        @endif
 
-                                                                    </span>
-                                                                    <span class="badge bg-success position-absolute" style="right:55px">
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
                                                                         @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                             {{ $approved->count() }}
                                                                         @endif
 
                                                                     </span>
-                                                                    <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                    <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
                                                                         @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                             {{ $reject->count() }}
                                                                         @endif
@@ -520,19 +574,48 @@
                                                         @if($packagestructural)
                                                             @foreach ($packagestructural as $pac)
                                                                 <button class="nav-link @if($pac->id == '1') active @else @endif" @if($pac->premiumpack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
-                                                                    <span class="badge bg-secondary position-absolute" style="right:25px">
-                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
-                                                                            {{ $pending->count() }}
-                                                                        @endif
 
-                                                                    </span>
-                                                                    <span class="badge bg-success position-absolute" style="right:55px">
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
                                                                         @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
                                                                             {{ $approved->count() }}
                                                                         @endif
 
                                                                     </span>
-                                                                    <span class="badge bg-danger position-absolute" style="right:85px">
+                                                                    <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
+                                                                        @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
+                                                                            {{ $reject->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                </button>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+
+                                                     @if($pactype == 'Luxury')
+                                                        @if($packagestructural)
+                                                            @foreach ($packagestructural as $pac)
+                                                                <button class="nav-link @if($pac->id == '1') active @else @endif" @if($pac->luxurypack == '1')  @else disabled style="background-color:#D9D9D9;cursor:not-allowed" @endif  id="v-pills-{{ $pac->id }}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{ $pac->id }}" type="button" role="tab" aria-controls="v-pills-{{ $pac->id }}" aria-selected="true">{{ $pac->drawingname }}
+
+                                                                    <span class="badge bg-success position-absolute" style="right:85px">
+                                                                        @if($approved = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',1)->get())
+                                                                            {{ $approved->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-secondary position-absolute" style="right:55px">
+                                                                        @if($pending = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',null)->get())
+                                                                            {{ $pending->count() }}
+                                                                        @endif
+
+                                                                    </span>
+                                                                    <span class="badge bg-danger position-absolute" style="right:25px">
                                                                         @if($reject = App\Models\uploaddrawing::where('pacid',$pac->id)->where('leadid',$leadid)->where('clientside_status',2)->get())
                                                                             {{ $reject->count() }}
                                                                         @endif
@@ -580,7 +663,11 @@
                                                                                                     @elseif($files->clientside_status == 2)
                                                                                                 <div class="badge bg-danger mb-2">Client Rejected</div>
                                                                                                  @endif
-
+        @if($files->ae_status == 1)
+                                                                                                <div class="badge bg-success mb-2">AE Approved</div>
+                                                                                                    @elseif($files->ae_status == 2)
+                                                                                                <div class="badge bg-danger mb-2">AE Rejected</div>
+                                                                                                 @endif
                                                                                             <div class="drawicon ">
 
                                                                                                         <!--<img src="/images/{{ $files->filename }}" class="img-fluid">-->
@@ -619,7 +706,11 @@
                                                                                                     @elseif($files->clientside_status == 2)
                                                                                                 <div class="badge bg-danger">Client Rejected</div>
                                                                                                  @endif
-
+@if($files->ae_status == 1)
+                                                                                                <div class="badge bg-success mb-2">AE Approved</div>
+                                                                                                    @elseif($files->ae_status == 2)
+                                                                                                <div class="badge bg-danger mb-2">AE Rejected</div>
+                                                                                                 @endif
 
                                                                                             <div class="drawicon">
                                                                                                 {{-- <i class="fa fa-file-archive-o" aria-hidden="true"></i> --}}
@@ -933,6 +1024,25 @@
                             @endif
                         @endif
 
+                         @if($pactype == 'Luxury')
+                            @if($packagearchitect)
+
+                                @foreach ($packagearchitect as $pac)
+                                <tr>
+                                    <td>{{ $pac->drawingname }}</td>
+                                    <td>
+                                        <input type="file" name="uploadfile[]" accept="application/pdf" class="form-control" @if($pac->luxurypack == '1')  @else style="background-color:#ccc;pointer-events:none;cursor:not-allowed" @endif >
+                                        <input type="hidden" name="pacid[]" value="{{ $pac->id }}">
+                                                                    <input type="hidden" name="pacname[]" value="{{ $pac->drawingname }}">
+                                                                    <input type="hidden" name="drawid[]" value="{{ $drawingid }}">
+                                                                    <input type="hidden" name="leadid[]" value="{{ $leadid }}">
+                                                                    <input type="hidden" name="pactype[]" value="{{ $pac->engtype }}">
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
+                        @endif
+
                     </tbody>
                 </table>
 
@@ -1019,7 +1129,25 @@
                                                                     <input type="hidden" name="pacname[]" value="{{ $pac->drawingname }}">
                                                                     <input type="hidden" name="drawid[]" value="{{ $drawingid }}">
                                                                     <input type="hidden" name="leadid[]" value="{{ $leadid }}">
-                                                                    <input type="hiden" name="pactype[]" value="{{ $pac->engtype }}">
+                                                                    <input type="hidden" name="pactype[]" value="{{ $pac->engtype }}">
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
+                        @endif
+
+                         @if($pactype == 'Luxury')
+                            @if($packagestructural)
+                                @foreach ($packagestructural as $pac)
+                                <tr>
+                                    <td>{{ $pac->drawingname }}</td>
+                                    <td>
+                                        <input type="file" name="uploadfile[]" accept="application/pdf" class="form-control" @if($pac->luxurypack == '1')  @else disabled @endif >
+                                        <input type="hidden" name="pacid[]" value="{{ $pac->id }}">
+                                                                    <input type="hidden" name="pacname[]" value="{{ $pac->drawingname }}">
+                                                                    <input type="hidden" name="drawid[]" value="{{ $drawingid }}">
+                                                                    <input type="hidden" name="leadid[]" value="{{ $leadid }}">
+                                                                    <input type="hidden" name="pactype[]" value="{{ $pac->engtype }}">
                                     </td>
                                 </tr>
                                 @endforeach

@@ -72,7 +72,7 @@ class DrawingController extends Controller
         {
             $getartect = DB::table('users')
             ->select('*')
-            ->where('role','=',5)
+            ->whereIn('role',[5,14])
             ->get();
         }
         else
@@ -84,7 +84,7 @@ class DrawingController extends Controller
         {
             $getstructuraleng = DB::table('users')
         ->select('*')
-        ->where('role','=',20)
+        ->whereIn('role',[20,18])
         ->get();
         }
         else
@@ -282,6 +282,13 @@ class DrawingController extends Controller
             ->where('engtype','=',1)
             ->get();
         }
+        elseif($pactype == 'Luxury')
+        {
+            $packagearchitect = DB::table('drawingdetails')
+            ->select('luxurypack','id','drawingname','engtype')
+            ->where('engtype','=',1)
+            ->get();
+        }
         elseif($pactype == 'Standard')
         {
             $packagearchitect = DB::table('drawingdetails')
@@ -308,6 +315,13 @@ class DrawingController extends Controller
         {
             $packagestructural = DB::table('drawingdetails')
             ->select('standardpack','id','drawingname','engtype')
+            ->where('engtype','=',2)
+            ->get();
+        }
+        elseif($pactype == 'Luxury')
+        {
+            $packagestructural = DB::table('drawingdetails')
+            ->select('luxurypack','id','drawingname','engtype')
             ->where('engtype','=',2)
             ->get();
         }
@@ -409,7 +423,7 @@ class DrawingController extends Controller
         ->insert([
             "notificationview"=>$engid->engineercode,
             "notificationstatus"=>0,
-            "purposeid"=>$drawid,
+            "purposeid"=>$engid->clientcode,
             "purposename" => $engid->clientcode. " drawings uploaded successfully"
             ]);
 
@@ -425,6 +439,24 @@ class DrawingController extends Controller
             "clientside_status"=>1
         ]);
 
+        $getleadid = DB::table('uploaddrawings')
+        ->select('*')
+        ->where('id','=',$id)
+        ->first();
+
+        $engid = DB::table('drawings')
+        ->select('*')
+        ->where('leadid','=',$getleadid->leadid)
+        ->first();
+
+         DB::table('notifications')
+        ->insert([
+            "notificationview"=>$engid->engineerid,
+            "notificationstatus"=>0,
+            "purposeid"=>$engid->clientid,
+            "purposename" => "$engid->clientid Client Approve the image"
+            ]);
+
         return $clientapprove;
     }
 
@@ -436,6 +468,24 @@ class DrawingController extends Controller
         ->update([
             "ae_status"=>1
         ]);
+
+        $getarchitectid = DB::table('uploaddrawings')
+        ->select('*')
+        ->where('id','=',$id)
+        ->first();
+
+         $arctictid = DB::table('drawings')
+        ->select('*')
+        ->where('leadid','=',$getarchitectid->leadid)
+        ->first();
+
+         DB::table('notifications')
+        ->insert([
+            "notificationview"=>$arctictid->assigned_to,
+            "notificationstatus"=>0,
+            "purposeid"=>$arctictid->assigned_to,
+            "purposename" => "$arctictid->assigned_to AE Approve the image"
+            ]);
 
         return $aeapprove;
     }
@@ -450,6 +500,24 @@ class DrawingController extends Controller
             "clientside_status"=>2
         ]);
 
+        $getleadid = DB::table('uploaddrawings')
+        ->select('*')
+        ->where('id','=',$id)
+        ->first();
+
+        $engid = DB::table('drawings')
+        ->select('*')
+        ->where('leadid','=',$getleadid->leadid)
+        ->first();
+
+         DB::table('notifications')
+        ->insert([
+            "notificationview"=>$engid->engineerid,
+            "notificationstatus"=>0,
+            "purposeid"=>$engid->clientid,
+            "purposename" => "$engid->clientid Client Reject the image"
+            ]);
+
         return $clientreject;
     }
 
@@ -461,6 +529,24 @@ class DrawingController extends Controller
         ->update([
             "ae_status"=>2
         ]);
+
+         $getarchitectid = DB::table('uploaddrawings')
+        ->select('*')
+        ->where('id','=',$id)
+        ->first();
+
+         $arctictid = DB::table('drawings')
+        ->select('*')
+        ->where('leadid','=',$getarchitectid->leadid)
+        ->first();
+
+         DB::table('notifications')
+        ->insert([
+            "notificationview"=>$arctictid->assigned_to,
+            "notificationstatus"=>0,
+            "purposeid"=>$arctictid->clientid,
+            "purposename" => "$arctictid->assigned_to AE Reject the image"
+            ]);
 
         return $clientreject;
     }

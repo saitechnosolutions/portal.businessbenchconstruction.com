@@ -64,6 +64,8 @@ class AppServiceProvider extends ServiceProvider
 
         $designations = DB::table('designations')
         ->select('*')
+        ->where('id','!=',3)
+        ->where('id','!=',4)
         ->get();
         View::share('designations',$designations);
         

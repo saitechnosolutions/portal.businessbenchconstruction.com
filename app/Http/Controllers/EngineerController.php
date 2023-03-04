@@ -99,13 +99,13 @@ class EngineerController extends Controller
                     "userid"=>$engineerid,
                     "usertype"=>"3",
                     "role"=>"3",
-                    "project" => 1,
-                    "zones" => 1,
-                    "area" => 1,
+                    "project" => 0,
+                    "zones" => 0,
+                    "area" => 0,
                     "clients" => 1,
-                    "estimates" => 1,
+                    "estimates" => 0,
                     "leads" => 1,
-                    "drawings" => 1,
+                    "drawings" => 0,
                 ]);
 
                 require base_path("vendor/autoload.php");
@@ -118,8 +118,10 @@ class EngineerController extends Controller
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';             //  smtp host
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'saitechnosolutionscbe@gmail.com';
-                    $mail->Password = 'lwysjixcfqanrtgr';
+                    // $mail->Username = 'saitechnosolutionscbe@gmail.com';
+                    // $mail->Password = 'lwysjixcfqanrtgr';
+                    $mail->Username = 'info@businessbench.in';
+                    $mail->Password = 'xjonooiofbrehtfn';
                     $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
                     $mail->Port = 587;                          // port - 587/465
 

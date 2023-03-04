@@ -35,6 +35,7 @@
                                                 <tr>
                                                     <th>Client ID</th>
                                                     <th>Lead ID</th>
+                                                    <th>Name</th>
                                                     <th>Drawing ID</th>
                                                     <th>AE Upload File</th>
                                                     @if(Auth::user()->usertype != '14')
@@ -61,8 +62,13 @@
 
                                                 @foreach ($getdrawings as $draw)
                                                     <tr>
-                                                        <td>@if($draw->clientid == null) null @else {{ $draw->clientid }} @endif</td>
+                                                        <td>@if($draw->clientid == null) <span class="badge bg-secondary">Client ID N/A</span> @else {{ $draw->clientid }} @endif</td>
                                                         <td>{{ $draw->leadid }}</td>
+                                                        <td>
+                                                            @if ($getdrawname = App\Models\Client::where('leadid',$draw->leadid)->first())
+                                                                {{ $getdrawname->name }}
+                                                            @endif
+                                                        </td>
                                                         <td>{{ $draw->drawid }}</td>
                                                         <td><a href="/images/{{ $draw->drawimage }}" download>Download</a></td>
                                                         <td>
@@ -99,7 +105,10 @@
                                                         @if($draw->assigned_to == null)
                                                             <button class="btn btn-primary text-white assignedtoarchitect" data-drawid={{ $draw->drawid }}><i class="fa fa-users" aria-hidden="true"></i></button>
                                                             @else
-                                                            <span class="badge bg-success">Assigned to {{$draw->assigned_to}}</span>
+                                                            @if($name = App\Models\User::where('userid','=',$draw->assigned_to)->first())
+                                                                <span class="badge bg-success">Assigned to {{$name->name}}</span>
+                                                            @endif
+
                                                         @endif
 
                                                          </td>
@@ -110,7 +119,10 @@
                                                         @if($draw->assign_to_strceng == null)
                                                             <button class="btn btn-primary text-white assignedtostructuraleng" data-drawid={{ $draw->drawid }}><i class="fa fa-users" aria-hidden="true"></i></button>
                                                             @else
-                                                            <span class="badge bg-success">Assigned to {{$draw->assign_to_strceng}}</span>
+                                                             @if($name = App\Models\User::where('userid','=',$draw->assign_to_strceng)->first())
+                                                                <span class="badge bg-success">Assigned to {{$name->name}}</span>
+                                                            @endif
+                                                            <!--<span class="badge bg-success">Assigned to {{$draw->assign_to_strceng}}</span>-->
                                                         @endif
 
                                                          </td>
