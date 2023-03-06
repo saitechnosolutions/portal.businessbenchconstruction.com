@@ -96,17 +96,17 @@
             <section>
                 <ul class="nav nav-pills  justify-content-center nav-fill mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Architect</button>
+                      <button class="nav-link @if(Auth::user()->usertype == '5' || Auth::user()->usertype == '4' || Auth::user()->usertype == '3' || Auth::user()->usertype == '14')  active @endif" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Architect</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Structural Engineering</button>
+                      <button class="nav-link @if(Auth::user()->usertype == '18' || Auth::user()->usertype == '20')  active @endif" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Structural Engineering</button>
                     </li>
                     {{-- <li class="nav-item" role="presentation">
                       <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Quantity Surveyor</button>
                     </li> --}}
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="tab-pane fade @if(Auth::user()->usertype == '5'||  Auth::user()->usertype == '4' ||  Auth::user()->usertype == '3' || Auth::user()->usertype == '14') show active @endif" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
                         <div class="container-fluid">
                             <div class="row">
@@ -497,7 +497,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="tab-pane fade @if(Auth::user()->usertype == '18' || Auth::user()->usertype == '20') show active @endif" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">

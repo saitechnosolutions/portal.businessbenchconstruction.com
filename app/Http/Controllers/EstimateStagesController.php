@@ -140,10 +140,37 @@ class EstimateStagesController extends Controller
 
     public function uploadestimates(Request $request)
     {
-       $import = Excel::import(new UploadedEstimateImport, $request->file("estimate_import"));
         $engid = $request->engid;
         $clientid = $request->clientid;
         $estid = $request->estid;
+
+        $estimatecount = DB::table('uploadedestimates')
+        ->select('*')
+        ->where('clientid','=',$clientid)
+        ->where('engid','=',$engid)
+        ->count();
+
+        // dd($estimatecount);
+
+        if($estimatecount == 0)
+        {
+            $import = Excel::import(new UploadedEstimateImport, $request->file("estimate_import"));
+        }
+        else
+        {
+            $estimatedelete = DB::table('uploadedestimates')
+            ->select('*')
+            ->where('clientid','=',$clientid)
+            ->where('engid','=',$engid)
+            ->delete();
+
+            if($estimatedelete)
+            {
+                $import = Excel::import(new UploadedEstimateImport, $request->file("estimate_import"));
+            }
+        }
+
+
         // dd($estid);
        if($import)
        {

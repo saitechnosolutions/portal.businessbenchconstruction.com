@@ -108,7 +108,7 @@
                 @if(Auth::user()->usertype == '3')
 
                     @if($raisebutton = App\Models\Payment::where('estimateid',$s->estimateid)->where('id',$s->id)->where('stageid',$s->stageid)->first())
-                    
+
                         @if($raisebutton->approval_status == '0')
                                 <span class="badge bg-success">AE Raise Payment</span>
                         @endif
@@ -492,7 +492,7 @@
 
                                 @if($raisebutton = App\Models\Payment::where('estimateid',$s->estimateid)->where('id',$s->id)->where('stageid',$s->stageid)->first())
                                     @if($raisebutton->approval_status == '0')
-                                        <button class="btn btn-success w-100 forwardtoqtysurveyorhead" data-id="{{ $s->id }}" data-estimateid="{{ $s->estimateid }}" data-amount="{{ $s->payamount }}" data-stageid="{{ $s->stageid }}" data-id="{{ $s->id }}" >Forward to QS Head</button>
+                                        <button class="btn btn-success w-100 " data-id="{{ $s->id }}" data-estimateid="{{ $s->estimateid }}" data-amount="{{ $s->payamount }}" data-stageid="{{ $s->stageid }}" data-id="{{ $s->id }}" >Waiting for QS Approval</button>
                                     @endif
                                     @if($raisebutton->approval_status == '5')
                                         <button class="btn btn-warning w-100" >Waiting for payment</button>

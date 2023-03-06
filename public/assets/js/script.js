@@ -1393,15 +1393,16 @@ $(".clientapprove").on("click", function () {
                 method: "GET",
                 url: `/clientapprove/${approveid}`,
                 success: function (data) {
-                    Swal.fire(
-                        "Approved!",
-                        "Your File Approved.",
-                        "success"
-                    ).then((result) => {
-                        location.reload();
-                        // $("#example").DataTable().destroy();
-                        // dataTableReRender();
-                    });
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'File Approved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+
+                    // viewEngineers();
+                    location.reload();
                 },
                 error: function (data) {
                     Swal.fire(
@@ -3073,15 +3074,16 @@ $(document).on("click",".client_edit",function(){
                 method: "GET",
                 url: `/aeapprove/${approveid}`,
                 success: function (data) {
-                    Swal.fire(
-                        "Approved!",
-                        "Your File Approved.",
-                        "success"
-                    ).then((result) => {
-                        location.reload();
-                        // $("#example").DataTable().destroy();
-                        // dataTableReRender();
-                    });
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your File Approved Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+
+                    // viewEngineers();
+                    // location.reload();
                 },
                 error: function (data) {
                     Swal.fire(
@@ -4485,6 +4487,53 @@ $(".qsheadapproveestimate").on("click",function(){
     });
 
 });
+
+$(".qsheadrejectestimate").on("click",function(){
+
+    const estid = $(this).data("estid");
+    // alert(addiestid);
+    // const clientid = $(this).data("clientid");
+    // alert(userid)
+    // const id = $("#payid").val();
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Reject Estimate",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Reject!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                method: "GET",
+                url: `/qsheadrejectestimate/${estid}`,
+                success: function (data) {
+                    Swal.fire(
+                        "Rejected!",
+                        "Estimate Rejected",
+                        "success"
+                    ).then((result) => {
+                        location.reload();
+                        // $("#example").DataTable().destroy();
+                        // dataTableReRender();
+                    });
+
+                },
+                error: function (data) {
+                    Swal.fire(
+                        "Error!",
+                        "Please check",
+                        "success"
+                    );
+                },
+            });
+        }
+    });
+
+});
+
 
 
 $(".aeapproveestimate").on("click",function(){

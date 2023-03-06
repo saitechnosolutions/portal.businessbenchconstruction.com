@@ -836,6 +836,16 @@ class EstimateController2 extends Controller
         ]);
     }
 
+    public function qsheadrejectestimate($estid)
+    {
+        DB::table('estimaterequests')
+        ->select('*')
+        ->where('estimate_id','=',$estid)
+        ->update([
+            "admin_status"=>7
+        ]);
+    }
+
     public function aeapproveestimate($estid)
     {
         DB::table('estimaterequests')

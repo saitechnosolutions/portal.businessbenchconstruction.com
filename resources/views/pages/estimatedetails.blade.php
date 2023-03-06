@@ -39,11 +39,20 @@
 
                         @if($req = App\Models\estimaterequest::where('clientid',$clientid)->first())
                             @if($req->admin_status == '1' || $req->admin_status == '5')
-                                <button class="btn btn-success qsheadapproveestimate m-auto d-block" data-estid="{{ $req->estimate_id }}">Approve Estimate</button>
+                                <div class="m-auto d-block">
+                                    <button class="btn btn-success qsheadapproveestimate " data-estid="{{ $req->estimate_id }}">Approve Estimate</button>
+                                <button class="btn btn-danger qsheadrejectestimate " data-estid="{{ $req->estimate_id }}">Reject Estimate</button>
+                                </div>
+
                             @endif
                             @if($req->admin_status == '3')
                             <div class="alert alert-success" role="alert">
                                 Estimate Approved for GM/QS Head
+                              </div>
+                            @endif
+                            @if($req->admin_status == '7')
+                            <div class="alert alert-danger" role="alert">
+                                Estimate Reject for GM/QS Head
                               </div>
                             @endif
                             @if($req->admin_status == '4')

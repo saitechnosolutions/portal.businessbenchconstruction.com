@@ -186,6 +186,7 @@ Route::GET('qsadditionalestview/{addiestid}',[EstimateController2::class,'qsaddi
 Route::GET('approveaddnestae/{addiestid}',[EstimateController2::class,'approveaddnestae']);
 Route::GET('approveaddnestclient/{addiestid}',[EstimateController2::class,'approveaddnestclient']);
 Route::GET('qsheadapproveestimate/{estid}',[EstimateController2::class,'qsheadapproveestimate']);
+Route::GET('qsheadrejectestimate/{estid}',[EstimateController2::class,'qsheadrejectestimate']);
 Route::GET('aeapproveestimate/{estid}',[EstimateController2::class,'aeapproveestimate']);
 Route::POST('assignstructuraleng',[DrawingController::class,'assignstructuraleng']);
 Route::GET('aerejectestimate/{estid}',[EstimateController2::class,'aerejectestimate']);

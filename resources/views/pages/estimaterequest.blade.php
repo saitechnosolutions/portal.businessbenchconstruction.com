@@ -68,7 +68,8 @@
                                                                             <div class="d-flex justify-content-center">
                                                                                 @if($est->admin_status == 1 || $est->admin_status == 2)
                                                                                 <a style="margin-right:10px;pointer-events:none" href="/createmainest/{{ $est->engineerid }}/{{ $est->clientid }}" class="btn btn-success" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                                                                <a data-bs-toggle="modal" style="margin-right:10px;pointer-events:none" data-engid="{{ $est->engineerid }}" data-clientid="{{ $est->clientid }}" data-bs-target="#uploadestimate" class="btn btn-primary createbtn" ><i class="fa fa-upload" aria-hidden="true" ></i></a>
+                                                                                {{-- <a data-bs-toggle="modal" style="margin-right:10px;pointer-events:none" data-engid="{{ $est->engineerid }}" data-clientid="{{ $est->clientid }}" data-bs-target="#uploadestimate" class="btn btn-primary createbtn" ><i class="fa fa-upload" aria-hidden="true" ></i></a> --}}
+                                                                                <a data-bs-toggle="modal" data-engid="{{ $est->engineerid }}" data-clientid="{{ $est->clientid }}" data-bs-target="#uploadestimate" class="btn btn-primary createbtn"><i class="fa fa-upload" aria-hidden="true" ></i></a>
                                                                                 @else
                                                                                 <a style="margin-right:10px" href="/createmainest/{{ $est->engineerid }}/{{ $est->clientid }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                                                                 <a data-bs-toggle="modal" data-engid="{{ $est->engineerid }}" data-clientid="{{ $est->clientid }}" data-bs-target="#uploadestimate" class="btn btn-primary createbtn"><i class="fa fa-upload" aria-hidden="true" ></i></a>
@@ -105,7 +106,7 @@
                                                                                         @if($name = App\Models\User::where('userid','=',$est->assigned_to)->first())
                                                                 <span class="badge bg-success">{{$name->name}}</span>
                                                             @endif
-                                                                                    
+
                                                                                 @endif
                                                                             </td>
                                                                         @endif

@@ -453,7 +453,7 @@ class DrawingController extends Controller
         ->insert([
             "notificationview"=>$engid->engineerid,
             "notificationstatus"=>0,
-            "purposeid"=>$engid->clientid,
+            "purposeid"=>$engid->engineerid,
             "purposename" => "$engid->clientid Client Approve the image"
             ]);
 
