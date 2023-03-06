@@ -3084,6 +3084,10 @@ $(document).on("click",".client_edit",function(){
 
                     // viewEngineers();
                     // location.reload();
+
+
+                    $('#nav-all1').load(document.URL +  ' #nav-all1');
+
                 },
                 error: function (data) {
                     Swal.fire(

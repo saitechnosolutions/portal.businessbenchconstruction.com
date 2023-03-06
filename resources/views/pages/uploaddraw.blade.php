@@ -701,11 +701,11 @@
                                                                                             @if($files->ae_status == 1)
                                                                                                 <div class="drawingdetails">
                                                                                         <div class="drawingcontent">
-                                                                                                @if($files->clientside_status == 1)
+                                                                                                {{-- @if($files->clientside_status == 1)
                                                                                                 <div class="badge bg-success">Client Approved</div>
                                                                                                     @elseif($files->clientside_status == 2)
                                                                                                 <div class="badge bg-danger">Client Rejected</div>
-                                                                                                 @endif
+                                                                                                 @endif --}}
 @if($files->ae_status == 1)
                                                                                                 <div class="badge bg-success mb-2">AE Approved</div>
                                                                                                     @elseif($files->ae_status == 2)
@@ -726,12 +726,12 @@
                                                                                             @endif
                                                                                             {{-- <a  class="btn btn-danger deletedrawing" data-draid="{{ $files->id }}"><i class="fa fa-trash" aria-hidden="true"></i></a> --}}
 
-                                                                                                @if(Auth::user()->usertype == '4')
+                                                                                                {{-- @if(Auth::user()->usertype == '4')
                                                                                                 @if($files->clientside_status == 0 || $files->clientside_status == null)
                                                                                                     <a  class="btn btn-success clientapprove" data-id="{{ $files->id }}"  style="color:#fff;"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                                                                     <a   class="btn btn-danger clientreject" data-id="{{ $files->id }}" style="color:#fff;"><i class="fa fa-ban" aria-hidden="true"></i></a>
                                                                                                 @endif
-                                                                                                @endif
+                                                                                                @endif --}}
                                                                                                  </div>
                                                                                     </div>
                                                                                         @endif

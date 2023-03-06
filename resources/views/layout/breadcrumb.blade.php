@@ -32,10 +32,7 @@
 
                         <a href="/clients">Clients</a>
 
-
                         <a>Drawing Details</a>
-
-
 
                 @endif
 
@@ -63,11 +60,8 @@
 
             @endif
 
-
                     <a style="text-transform: capitalize">{{$segment}}</a>
-
             @endforeach
-
 
                 </div>
 
